@@ -145,3 +145,35 @@ mpg %>%
   corrplot(method = "number", type = "lower", diag = FALSE)
 ```
 cty and hwy as well as displ and cyl are positively correlated while displ and cyl with cty and hwy are both negatively correlated while year is near zero with every other variable. Most of these relationships make sense since as I mentioned earlier larger engines tend to have more cylinders and therefore have lower fuel efficiency.  
+
+
+Exercise 6:
+
+USing ggplot(), recreate the following graphic as closely as you can. Hint: Use the ggthemes package.
+
+```{r}
+library(ggthemes)
+
+ggplot(mpg, aes(x = hwy, y = class)) + 
+  geom_boxplot() + 
+  geom_jitter(alpha = 0.25, width = 0, height = 0.25) + 
+  theme_gdocs() + 
+  labs(x = "Highway MPG", y = "Vechile Class")
+```
+
+Exercise 7
+
+Recreate the following graphic.
+
+```{r}
+ggplot(mpg, aes(x = class, y = hwy, fill = drv)) + geom_boxplot()
+```
+
+Exercise 8
+
+Recreate the following graphic.
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy)) + geom_point(aes(color = drv)) + geom_smooth(aes(linetype = drv), se = FALSE)
+```
+
+
