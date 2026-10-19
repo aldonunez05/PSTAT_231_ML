@@ -3,11 +3,10 @@ title: "Data Memo: Detecting Fraudulent Job Postings"
 author: "Aldo Nunez"
 date: "October 18, 2026"
 output:
-  html_document:
+  pdf_document:
     toc: true
-    toc_float: true
-    theme: flatly
     highlight: tango
+geometry: margin=1in
 ---
 
 ```{r setup, include = FALSE}
@@ -76,7 +75,7 @@ ggplot(missing_tbl, aes(x = reorder(variable, pct_missing), y = pct_missing)) +
   theme_minimal()
 ```
 
-Eleven of the 17 non-ID columns have missing values. Missingness ranges from about 2% (`location`) to 84% (`salary_range`). The binary indicators, `title`, `description`, and the outcome are complete.
+11 of the 17 non-ID columns have missing values. Missingness ranges from about 2% (`location`) to 84% (`salary_range`). The binary indicators, `title`, `description`, and the outcome are complete.
 
 I don't think this missingness is random. A scammer may well leave out a company profile or details about the role. A quick check supports this:
 
@@ -157,6 +156,4 @@ I plan to compare logistic regression (possibly with lasso/elastic net), k-neare
 
 **Questions for the instructional team:**
 
-- Is it acceptable to include text-derived features (e.g., TF-IDF terms) as predictors, or should I limit the project to the structured variables plus simple text summaries?
 - For the imbalanced outcome, is ROC AUC an appropriate primary metric, or would you prefer we report something like PR AUC or F1?
-- About 2,100 postings share an identical title and description with another posting. Given that, should I remove duplicates before splitting to avoid leakage between the training and testing sets?
