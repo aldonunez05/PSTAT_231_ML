@@ -3,10 +3,7 @@ title: "Homework 2"
 author: "Aldo Nunez"
 date: "2026-10-17"
 output:
-    html_document:
-      toc: true
-      toc_float: true
-      code_folding: show
+    pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -29,7 +26,9 @@ abalone <- read_csv("data/abalone.csv")
 
 For this assignment, we will be working with a data set from the UCI (University of California, Irvine) Machine Learning repository ([see website here](http://archive.ics.uci.edu/ml/datasets/Abalone)). The full data set consists of $4,177$ observations of abalone in Tasmania. (Fun fact: [Tasmania](https://en.wikipedia.org/wiki/Tasmania "Tasmania") supplies about $25\%$ of the yearly world abalone harvest.)
 
+<!-- Image file is not in the repo; uncomment once images/ is added:
 ![*Fig 1. Inside of an abalone shell.*](images/17612037-abalone-shell-inside.jpg){width="309"}
+-->
 
 The age of an abalone is typically determined by cutting the shell open and counting the number of rings with a microscope. The purpose of this data set is to determine whether abalone age (**number of rings + 1.5**) can be accurately predicted using other, easier-to-obtain information about the abalone.
 
@@ -55,7 +54,7 @@ abalone %>%
   labs(title = "Distribution of Abalone Age", x = "Age (years)", y = "Count")
 ```
 
-Age goes from 2.5 to 30.5 years. The mean is about 11.4 and the median is 10.5, with a standard deviation of about 3.2. The distribution is unimodal and **right-skewed** (skewness ≈ 1.1). Most abalone are between about 7.5 and 17.5 years old (the 5th to 95th percentiles), and the peak is around 9–11 years. There is a long right tail with a few abalone older than 20, while there are very few young abalone (under about 5). Because the mean is higher than the median, the older abalone in the tail pull the mean up.
+Age goes from 2.5 to 30.5 years. The mean is about 11.4 and the median is 10.5, with a standard deviation of about 3.2. The distribution is unimodal and **right-skewed** (skewness $\approx$ 1.1). Most abalone are between about 7.5 and 17.5 years old (the 5th to 95th percentiles), and the peak is around 9–11 years. There is a long right tail with a few abalone older than 20, while there are very few young abalone (under about 5). Because the mean is higher than the median, the older abalone in the tail pull the mean up.
 
 ### Question 2
 
@@ -105,7 +104,7 @@ abalone_recipe <- recipe(age ~ ., data = abalone_train %>% select(-rings)) %>%
   step_center(all_predictors()) %>%
   step_scale(all_predictors())
 
-abalone_recipe
+tidy(abalone_recipe)
 ```
 
 ### Question 4
